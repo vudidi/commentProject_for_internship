@@ -1,0 +1,12 @@
+.form-container {
+  width: 70%;
+  padding: 0 30px 70px;
+  display: flex;
+}
+
+@media screen and (max-width: 550px) {
+  .form-container {
+    padding: 0 0 50px 30px;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,169 @@
+.comment {
+  display: flex;
+  margin: 0 0 50px;
+  position: relative;
+  &__text-container {
+    width: 90%;
+    padding: 0 0 20px;
+    border-bottom: solid 1px #583260;
+  }
+  &__name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #583260;
+    cursor: default;
+  }
+  &__message {
+    width: 90%;
+    font-size: 17px;
+    line-height: 22px;
+    margin: 16px 0 10px;
+    cursor: default;
+  }
+  &__date {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+    cursor: default;
+  }
+  &__like {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent url(../images/like01.png);
+    width: 32px;
+    height: 32px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    &:hover {
+      background: transparent url(../images/like02.png);
+      transition: all 0.5s ease;
+    }
+    &_active {
+      background: transparent url(../images/like03.png);
+    }
+    &_active {
+      &:hover {
+        background: transparent url(../images/like04.png);
+      }
+    }
+  }
+  &__delete {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: transparent url(../images/delete01.png);
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+    &:hover {
+      background: transparent url(../images/delete02.png);
+      background-size: cover;
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .comment {
+    &__name {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    &__message {
+      font-size: 15px;
+      line-height: 20px;
+      margin: 16px 0 10px;
+      cursor: default;
+    }
+    &__date {
+      font-size: 12px;
+    }
+    &__like {
+      background: transparent url(../images/like01.png);
+      background-size: cover;
+      width: 20px;
+      height: 20px;
+      &:hover {
+        background: transparent url(../images/like02.png);
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+      }
+      &_active {
+        background: transparent url(../images/like03.png);
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+      }
+      &_active {
+        &:hover {
+          background: transparent url(../images/like04.png);
+          background-size: cover;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    &__delete {
+      background: transparent url(../images/delete01.png);
+      background-size: cover;
+      width: 20px;
+      height: 20px;
+      top: 35px;
+      right: 0;
+      &:hover {
+        background: transparent url(../images/delete02.png);
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .comment {
+    flex-direction: column;
+    &__text-container {
+      width: 100%;
+      padding: 0 0 20px;
+    }
+    &__name {
+      font-size: 16px;
+    }
+    &__message {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    &__date {
+      font-size: 10px;
+    }
+    &__like {
+      top: 5%;
+      right: 8%;
+    }
+
+    &__delete {
+      top: 5%;
+      right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .comment {
+    &__like {
+      top: 5%;
+      right: 20%;
+    }
+    &__delete {
+      top: 5%;
+      right: 6%;
+    }
+  }
+}
