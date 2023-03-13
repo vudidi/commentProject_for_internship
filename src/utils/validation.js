@@ -22,7 +22,7 @@ function hideInputError(
 }
 
 function checkWhitespaces(input) {
-  const reg = /\S+/;
+  const reg = /\S\S+/;
   return reg.test(input.value);
 }
 
