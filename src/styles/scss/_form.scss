@@ -4,13 +4,13 @@
   display: flex;
   flex-direction: column;
   &__input {
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(88, 50, 96, 0.8);
     border-radius: 5px;
     margin: 0 0 20px;
     background-color: transparent;
     position: relative;
     &:focus {
-      border: 2px solid #583260;
+      border: 2px solid #833ab4;
     }
   }
   &__date {
@@ -44,6 +44,13 @@
     font-size: 17px;
     @include gradient-animation(#833ab4, #583260, 0.5s);
     align-self: self-end;
+    &:focus {
+      border: 3px solid #a4521b;
+    }
+    &:disabled {
+      cursor: default;
+      @include gradient-animation(#7a479c, #7a479c, 0.5s);
+    }
   }
   &__error {
     display: none;

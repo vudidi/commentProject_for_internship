@@ -1,8 +1,20 @@
 .page-container {
-  width: 70%;
-  margin: 10% auto 0;
+  width: 55%;
+  margin: 5% auto 0;
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 1800px) {
+  .page-container {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .page-container {
+    width: 75%;
+  }
 }
 
 @media screen and (max-width: 900px) {

@@ -39,7 +39,6 @@
 
     &:hover {
       background: transparent url(../images/like02.png);
-      transition: all 0.5s ease;
     }
     &_active {
       background: transparent url(../images/like03.png);
@@ -52,17 +51,14 @@
   }
   &__delete {
     position: absolute;
-    top: 70px;
+    top: 50px;
     right: 0;
     background: transparent url(../images/delete01.png);
-    background-size: cover;
     width: 32px;
     height: 32px;
+    transition: all 0.5s ease;
     &:hover {
       background: transparent url(../images/delete02.png);
-      background-size: cover;
-      width: 32px;
-      height: 32px;
     }
   }
 }
