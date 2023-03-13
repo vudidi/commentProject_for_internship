@@ -25,7 +25,7 @@ formInputs.forEach((el) => {
 });
 
 // Вывести текущую дату в календарь
-getDate();
+getDate(dateInput);
 
 // Лайк комментария
 function toggleLike(evt) {
@@ -125,7 +125,7 @@ commentForm.addEventListener("submit", (e) => {
 
   commentForm.reset();
   formButton.blur();
-  getDate();
+  getDate(dateInput);
 });
 
 // Получить массив комментариев из локального хранилища

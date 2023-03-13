@@ -13,9 +13,9 @@ const monthsTitle = {
   12: "декабря",
 };
 
-export function getDate() {
+export function getDate(dateInput) {
   let date = new Date();
-  document.getElementById("date").value = date.toLocaleString("sv-SE", {
+  dateInput.value = date.toLocaleString("sv-SE", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
