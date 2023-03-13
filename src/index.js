@@ -2,7 +2,11 @@ import "./index.html";
 import "./styles/css/styles.css";
 import "./utils/validation.js";
 import { getRandomAva } from "./utils/randomAvatar.js";
-import { getDateAndTime, getPostTimeForLocal } from "./utils/getDate.js";
+import {
+  getDate,
+  getDateAndTime,
+  getPostTimeForLocal,
+} from "./utils/getDate.js";
 import { handleEventEnter } from "./utils/eventHandler.js";
 import {
   formInputs,
@@ -21,7 +25,7 @@ formInputs.forEach((el) => {
 });
 
 // Вывести текущую дату в календарь
-dateInput.valueAsDate = new Date();
+getDate();
 
 // Лайк комментария
 function toggleLike(evt) {
@@ -121,8 +125,7 @@ commentForm.addEventListener("submit", (e) => {
 
   commentForm.reset();
   formButton.blur();
-
-  dateInput.valueAsDate = new Date();
+  getDate();
 });
 
 // Получить массив комментариев из локального хранилища
@@ -147,7 +150,7 @@ function getLocalComments() {
 // Отрисовать комментарии из локального хранилища при перезагрузке страницы
 function renderLocalComments() {
   const listItems = getLocalComments();
-
+  console.log(listItems);
   listItems.forEach((el) => {
     commentID = el.key;
     createComment(
@@ -165,5 +168,6 @@ function renderLocalComments() {
 
 window.onload = function () {
   renderLocalComments();
+
   formButton.setAttribute("disabled", true);
 };

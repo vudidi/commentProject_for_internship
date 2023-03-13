@@ -13,10 +13,19 @@ const monthsTitle = {
   12: "декабря",
 };
 
+export function getDate() {
+  let date = new Date();
+  document.getElementById("date").value = date.toLocaleString("sv-SE", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
+
 const formatHours = () => {
   let hours = new Date().getHours();
   if (hours.toString().length < 2) {
-    return +("0" + hours);
+    return "0" + hours;
   } else {
     return hours;
   }

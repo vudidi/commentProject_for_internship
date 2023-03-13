@@ -77,7 +77,7 @@ export function enableValidation({ formSelector, inputSelector, ...rest }) {
 
 export const validationSet = {
   formSelector: ".form",
-  inputSelector: ".form__input",
+  inputSelector: ".form__input_active",
   submitButtonSelector: ".form__button",
   inactiveButtonClass: "form__button_disabled",
   inputErrorClass: "form__input_type_error",
