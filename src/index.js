@@ -160,7 +160,6 @@ commentForm.addEventListener("submit", submitComment);
 
 // Отрисовать комментарии из локального хранилища при перезагрузке страницы
 function renderLocalComments() {
-  const localComments = [];
   const localCommentsArr = JSON.parse(localStorage.getItem("localComments"));
 
   if (!localCommentsArr || localCommentsArr.length === 0) {
@@ -169,7 +168,6 @@ function renderLocalComments() {
   } else if (localCommentsArr) {
     localCommentsArr.forEach((el) => {
       commentID = el.key;
-      localComments.push(el);
       createComment(
         {
           date: getDateAndTime(el.date, true),
