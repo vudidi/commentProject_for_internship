@@ -115,7 +115,6 @@ function createComment(item, local, localId, isLiked) {
 
 // Опубликовать комментарий
 
-const localComments = [];
 function submitComment(e) {
   e.preventDefault();
 
@@ -137,9 +136,17 @@ function submitComment(e) {
     message: messageInput.value,
     isLiked: false,
   };
-  localComments.push(localComment);
 
-  localStorage.setItem("localComments", JSON.stringify(localComments));
+  const localComments = JSON.parse(localStorage.getItem("localComments"));
+
+  if (!localComments) {
+    const localComments = [];
+    localComments.push(localComment);
+    localStorage.setItem("localComments", JSON.stringify(localComments));
+  } else {
+    localComments.push(localComment);
+    localStorage.setItem("localComments", JSON.stringify(localComments));
+  }
 
   greetingBlock.classList.remove("greeting_visible");
   formButton.setAttribute("disabled", true);
@@ -153,6 +160,7 @@ commentForm.addEventListener("submit", submitComment);
 
 // Отрисовать комментарии из локального хранилища при перезагрузке страницы
 function renderLocalComments() {
+  const localComments = [];
   const localCommentsArr = JSON.parse(localStorage.getItem("localComments"));
 
   if (!localCommentsArr || localCommentsArr.length === 0) {
@@ -174,6 +182,8 @@ function renderLocalComments() {
       );
     });
   }
+
+  localStorage.setItem("localComments", JSON.stringify(localCommentsArr));
 }
 
 window.onload = function () {
