@@ -31,19 +31,38 @@ getDate(dateInput);
 function toggleLike(evt) {
   evt.target.classList.toggle("comment__like_active");
 
+  const localCommentsArr = JSON.parse(localStorage.getItem("localComments"));
   const commentKey = evt.target.closest(".comment").dataset.id;
-  const item = JSON.parse(localStorage.getItem(commentKey));
-  item.isLiked = !item.isLiked;
-  localStorage.setItem(commentKey, JSON.stringify(item));
+
+  localCommentsArr.forEach((el) => {
+    if (el.key === commentKey) {
+      el.isLiked = !el.isLiked;
+    }
+  });
+
+  localStorage.setItem("localComments", JSON.stringify(localCommentsArr));
 }
 
 // Удалить комментарий
 function deleteComment(btn) {
   const commentKey = btn.closest(".comment").dataset.id;
-  localStorage.removeItem(commentKey);
   btn.closest(".comment").remove();
 
-  if (localStorage.length === 0) {
+  const localCommentsArr = JSON.parse(localStorage.getItem("localComments"));
+  const localCommentsArrUpdated = [];
+
+  localCommentsArr.forEach((el) => {
+    if (el.key !== commentKey) {
+      localCommentsArrUpdated.push(el);
+    }
+  });
+
+  localStorage.setItem(
+    "localComments",
+    JSON.stringify(localCommentsArrUpdated)
+  );
+
+  if (localCommentsArrUpdated.length === 0) {
     greetingBlock.classList.add("greeting_visible");
     commentID = 0;
   }
@@ -95,7 +114,9 @@ function createComment(item, local, localId, isLiked) {
 }
 
 // Опубликовать комментарий
-commentForm.addEventListener("submit", (e) => {
+
+const localComments = [];
+function submitComment(e) {
   e.preventDefault();
 
   createComment(
@@ -109,16 +130,16 @@ commentForm.addEventListener("submit", (e) => {
 
   const currentComment = commentList.firstElementChild;
 
-  localStorage.setItem(
-    currentComment.dataset.id,
-    JSON.stringify({
-      key: currentComment.dataset.id,
-      date: dateInput.value + getPostTimeForLocal(),
-      name: nameInput.value,
-      message: messageInput.value,
-      isLiked: false,
-    })
-  );
+  const localComment = {
+    key: currentComment.dataset.id,
+    date: dateInput.value + getPostTimeForLocal(),
+    name: nameInput.value,
+    message: messageInput.value,
+    isLiked: false,
+  };
+  localComments.push(localComment);
+
+  localStorage.setItem("localComments", JSON.stringify(localComments));
 
   greetingBlock.classList.remove("greeting_visible");
   formButton.setAttribute("disabled", true);
@@ -126,48 +147,36 @@ commentForm.addEventListener("submit", (e) => {
   commentForm.reset();
   formButton.blur();
   getDate(dateInput);
-});
-
-// Получить массив комментариев из локального хранилища
-function getLocalComments() {
-  const arrLocal = [];
-
-  Object.keys(localStorage).forEach(function (key) {
-    arrLocal.push(JSON.parse(localStorage.getItem(key)));
-  });
-
-  if (arrLocal.length === 0) {
-    greetingBlock.classList.add("greeting_visible");
-    commentID = 0;
-  }
-  const sortedLocalArr = arrLocal.sort(function (a, b) {
-    return a.key - b.key;
-  });
-
-  return sortedLocalArr;
 }
+
+commentForm.addEventListener("submit", submitComment);
 
 // Отрисовать комментарии из локального хранилища при перезагрузке страницы
 function renderLocalComments() {
-  const listItems = getLocalComments();
-  console.log(listItems);
-  listItems.forEach((el) => {
-    commentID = el.key;
-    createComment(
-      {
-        date: getDateAndTime(el.date, true),
-        name: el.name,
-        message: el.message,
-      },
-      true,
-      el.key,
-      el.isLiked
-    );
-  });
+  const localCommentsArr = JSON.parse(localStorage.getItem("localComments"));
+
+  if (!localCommentsArr || localCommentsArr.length === 0) {
+    greetingBlock.classList.add("greeting_visible");
+    commentID = 0;
+  } else if (localCommentsArr) {
+    localCommentsArr.forEach((el) => {
+      commentID = el.key;
+      localComments.push(el);
+      createComment(
+        {
+          date: getDateAndTime(el.date, true),
+          name: el.name,
+          message: el.message,
+        },
+        true,
+        el.key,
+        el.isLiked
+      );
+    });
+  }
 }
 
 window.onload = function () {
   renderLocalComments();
-
   formButton.setAttribute("disabled", true);
 };

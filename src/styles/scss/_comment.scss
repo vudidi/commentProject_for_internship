@@ -29,36 +29,31 @@
     position: absolute;
     top: 0;
     right: 0;
-    background: transparent url(../images/like01.png);
-    width: 32px;
-    height: 32px;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
+    background: transparent url(../images/like-icon.svg);
+    background-size: cover;
+    width: 24px;
+    height: 24px;
     transition: all 0.5s ease;
-
     &:hover {
-      background: transparent url(../images/like02.png);
+      opacity: 0.7;
     }
     &_active {
-      background: transparent url(../images/like03.png);
-    }
-    &_active {
-      &:hover {
-        background: transparent url(../images/like04.png);
-      }
+      background: transparent url(../images/like-icon-active.svg);
+      background-size: cover;
     }
   }
+
   &__delete {
     position: absolute;
     top: 50px;
     right: 0;
-    background: transparent url(../images/delete01.png);
-    width: 32px;
-    height: 32px;
+    background: transparent url(../images/delete-icon.svg);
+    background-size: cover;
+    width: 24px;
+    height: 24px;
     transition: all 0.5s ease;
     &:hover {
-      background: transparent url(../images/delete02.png);
+      opacity: 0.7;
     }
   }
 }
@@ -79,45 +74,25 @@
       font-size: 12px;
     }
     &__like {
-      background: transparent url(../images/like01.png);
+      background: transparent url(../images/like-icon.svg);
       background-size: cover;
       width: 20px;
       height: 20px;
-      &:hover {
-        background: transparent url(../images/like02.png);
+      &_active {
+        background: transparent url(../images/like-icon-active.svg);
         background-size: cover;
         width: 20px;
         height: 20px;
-      }
-      &_active {
-        background: transparent url(../images/like03.png);
-        background-size: cover;
-        width: 20px;
-        height: 20px;
-      }
-      &_active {
-        &:hover {
-          background: transparent url(../images/like04.png);
-          background-size: cover;
-          width: 20px;
-          height: 20px;
-        }
       }
     }
 
     &__delete {
-      background: transparent url(../images/delete01.png);
+      background: transparent url(../images/delete-icon.svg);
       background-size: cover;
       width: 20px;
       height: 20px;
       top: 35px;
       right: 0;
-      &:hover {
-        background: transparent url(../images/delete02.png);
-        background-size: cover;
-        width: 20px;
-        height: 20px;
-      }
     }
   }
 }
